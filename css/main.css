@@ -1,0 +1,232 @@
+/* COMMON(공통 스타일) */
+body {
+    color: #333;
+    font-size: 16px;
+    /* 폰트 두께 */
+    font-weight: 400;
+    /* 줄높이 */
+    line-height: 1.4;
+    /* 폰트 */
+    font-family: 'Nanum Gothic', sans-serif;
+}
+img {
+    display: block;
+}
+a {
+    text-decoration: none;
+}
+/* 프로젝트에서 사용하는 모든 inner는 높이X 가로 1100px, 가운데정렬, 위치상 부모가될수있는 기준을 가지고있다. */
+.inner {
+    width: 1100px;
+    /* 외부여백 첫째값 : 위 아래 / 둘째값 : 좌 우*/
+    margin: 0 auto;
+    position: relative;
+}
+
+/* header(헤더) */
+header {
+    /* background-color: royalblue; */
+    background-color: #f6f5f0;
+    border-bottom: 1px solid #c8c8c8;
+}
+/* 헤더의 자식요소인 inner부분만 적용 */
+header .inner {
+    /* 높이 값 */
+    height: 120px;
+    /* background-color: orange; */
+}
+header .logo {
+    /* 로고의 높이 값 */
+    height: 75px;
+    /* 포지션 값을 부모요소를 기준으로 배치 (지금은 inner)*/
+    position: absolute; 
+    /* 위에서부터 0픽셀 지점 */
+    top: 0;
+    /* 아래에서부터 0픽셀 지점 */
+    bottom: 0;
+    left: 0;
+    /* 외부여백 속성 auto */
+    margin: auto;
+    /* display: none; */
+}
+
+header .sub-menu {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: flex;
+}
+
+header .sub-menu ul.menu {
+    font-family: Arial, sans-serif;
+    display: flex;
+}
+
+header .sub-menu ul.menu li {
+    position: relative;
+}
+/* ;;beore는 가상요소선택자  */
+header .sub-menu ul.menu li::before {
+    /* 인라인요소는 가로세로 조절 불가능 블럭으로 변경해준다. */
+    content: "";
+    display: block; /* <-지워도 됌 */
+    width: 1px;
+    height: 12px;
+    background-color: #e5e5e5;
+    /* 부모요소(여기선 li)를 기준으로 배치하기위해 position을 absolute로 지정 */
+    /* position absolute가 사용된 요소는 자동으로 display값이 block으로 변하니 위 display값을 지워줘도된다. */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    /* 외부여백값으로 auto를 줘서 위 아래값을 브라우저가 계산하도록한다. 죄,우는 0인데 생략가능 */
+    margin: auto;
+}
+/* 여러 li태그중에 첫번째태그를 찾아서 그 첫번째 li태그의 가상요소선택자 before부분을 어떻게 할거냐라는 뜻  */
+header .sub-menu ul.menu li:first-child:before {
+    display: none;
+}
+
+header .sub-menu ul.menu li a {
+    font-size: 12px;
+    /* a태그는 인라인요소 위,아래,가로,세로값 가질 수 없음 display 로 블럭요소로 변경 */
+    padding: 11px 16px;
+    display: block;
+    color: #656565;
+    
+}
+/* a태그 위에 마우스를 올리면 ~게 하겠다 */
+header .sub-menu ul.menu li a:hover {
+    color: #000;
+}
+
+header .sub-menu .search {
+    height: 34px;
+    position: relative;
+}
+
+header .sub-menu .search input {
+    width: 34px;    
+    height: 34px;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    /* 요소의 크기 기준을 유지하면서 선을 넣기위해  */
+    box-sizing: border-box;
+    /* 인풋요소의 모서리를 5px만큼 깎음 */
+    border-radius: 5px;
+    /* 아웃라인속성을 사용하지않음 */
+    outline: none;
+    background-color: #fff;
+    color: #777;
+    font-size: 12px;
+    /* 요소 변화를 자연스럽게 바꿔주기위해 transition속성 이용 (가로만 0.4초) */
+    transition: width .4s;
+    
+}
+/* 인풋요소가 포커스되면 요소의 가로 넓이를 190px 테두리색을 초록색으로 */
+header .sub-menu .search input:focus {
+    width: 190px;
+    border-color: #669900;
+}
+
+header .sub-menu .search .material-icons {
+    height: 24px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 5px;
+    /* margin은 높이 값이 필요 */
+    margin: auto;
+    /* 전환속성 */
+    transition: .4s;
+    
+}
+/* 포커스가되면 search라는 클래스에 focused가 들어간다 그때 사용할 기능
+                 서치에 붙고 빠지니까 붙어있어야 함 */
+header .sub-menu .search.focused .material-icons {
+    opacity: 0;
+}
+
+header .main-menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    /* 쌓임순서 조절 */
+    z-index: 1;
+    /* 각각 메뉴 수평으로 */
+    display: flex;
+}
+
+header .main-menu .item {
+
+}
+
+header .main-menu .item .item__name {
+    /* 아이템 네임 내부여백 위, 오른쪽, 아래, 왼쪽 */
+    padding: 10px 20px 34px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+/* 이름에 마우스를 올리면 이름뿐만아니라 컨텐츠도 반응해야하기때문에 item에 hover를 넣어준다 */
+header .main-menu .item:hover .item__name {
+    background-color: #2c2a29; 
+    color: #669900;
+    /* 좌상단 우상단 6px 나머지 0 */
+    border-radius: 6px 6px 0 0;
+}
+
+header .main-menu .item .item__contents {
+    width: 100%;
+    /* 뷰포트를 기준으로 배치 */
+    position: fixed;
+    left: 0;
+    /* 화면 특성 사라짐 */
+    display: none;
+     
+}
+
+header .main-menu .item:hover .item__contents {
+    /* item클릭시 블럭으로 바꿔 표시 */
+    display: block;
+}
+/* 컨텐츠의 메뉴 부분 */
+header .main-menu .item .item__contents .contents__menu {
+    background-color: #2c2a29;
+}
+/* 컨텐츠 메뉴의 자식 ul태그에 적용 */
+header .main-menu .item .item__contents .contents__menu > ul{
+    /* 수평으로 정렬하기 위한 flex */
+    display: flex;
+    /* 내부여백 위,아래 20px 좌,우 사용x */
+    padding: 20px 0;
+}
+/* 컨텐츠 메뉴의 자식 ul태그의 자식 li태그에 적용 */
+header .main-menu .item .item__contents .contents__menu > ul > li{
+    width: 220px;
+    
+}
+/* 컨텐츠 메뉴의 자식 ul태그의 자식 li태그 안의 h4에 적용 */
+header .main-menu .item .item__contents .contents__menu > ul > li h4 {
+    padding: 3px 0 12px 0;
+    font-size: 14px;
+    color: #fff;
+
+}
+
+/* 컨텐츠 메뉴의 자식 ul태그의 자식 li태그 안의 ul에 적용 */
+/* 사용하지않아서 삭제 */
+/* header .main-menu .item .item__contents .contents__menu > ul > li ul {
+} */
+
+/* 컨텐츠 메뉴의 자식 ul태그의 자식 li태그 안의 ul안에 li에 적용 */
+header .main-menu .item .item__contents .contents__menu > ul > li ul li {
+    padding: 5px 0;
+    font-size: 12px;
+    color: #999;
+    /* 버튼에 마우스를 올리면 커서가 손가락모양으로 바뀜 */
+    cursor: pointer;
+}
+
+header .main-menu .item .item__contents .contents__texture {
+    background-color: orange;
+    height: 100px;
+}
