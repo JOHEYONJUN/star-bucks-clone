@@ -65,7 +65,7 @@ header .sub-menu ul.menu {
 header .sub-menu ul.menu li {
     position: relative;
 }
-/* ;;beore는 가상요소선택자  */
+/* ;;before는 가상요소선택자  */
 header .sub-menu ul.menu li::before {
     /* 인라인요소는 가로세로 조절 불가능 블럭으로 변경해준다. */
     content: "";
